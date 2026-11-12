@@ -2,7 +2,10 @@
 
 > **Go without the gatekeeping.**
 
-**GolangForAll** is an independent community for people who **learn, build, teach, and contribute with Go**.
+**GolangForAll** is an independent community for people who **learn, build,
+teach, and contribute with Go**. This repository contains the community
+learning and content platform; execution is provided by the separately
+deployed [GoLab](https://golab.golangforall.in) service.
 
 We bring developers together through technical writing, documentation, projects, meetups, discussions, and community-driven learning.
 
@@ -228,7 +231,7 @@ The exact structure may evolve as the platform grows.
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/golangforall.git
+git clone https://github.com/dhawalshankar/golang4all.git
 cd golangforall
 ```
 
@@ -326,6 +329,13 @@ Vercel. This separation gives the public learning platform a distinct
 untrusted-code execution boundary: content APIs manage educational material,
 whereas the Go runner owns compilation, Docker isolation, resource controls,
 timeouts, output capture, and execution telemetry.
+
+### Repository relationships
+
+| Repository/service | Responsibility |
+|---|---|
+| GolangForAll | Community content, docs, articles, and announcements |
+| GoLab | Browser-based Go editor and isolated execution |
 
 ---
 

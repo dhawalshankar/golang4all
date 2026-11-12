@@ -313,6 +313,22 @@ Join the community and help make Go accessible without the gatekeeping.
 
 ---
 
+## 🚀 Production ecosystem
+
+GolangForAll is deployed as a connected set of learning and execution
+services. The documentation and community frontend is served through the
+Docusaurus/React application, its Go content APIs use PostgreSQL/NeonDB and
+Cloudinary, and GoLab is exposed at `https://golab.golangforall.in` with an
+independent Go runner at `https://api.golangforall.in`.
+
+GoLab runs on AWS EC2 behind Caddy and systemd, while the frontend is hosted on
+Vercel. This separation gives the public learning platform a distinct
+untrusted-code execution boundary: content APIs manage educational material,
+whereas the Go runner owns compilation, Docker isolation, resource controls,
+timeouts, output capture, and execution telemetry.
+
+---
+
 ## ⚖️ Disclaimer
 
 GolangForAll (`golangforall.in`) is an **independent, community-run initiative**.

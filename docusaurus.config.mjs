@@ -38,6 +38,9 @@ const config = {
         },
         blog: false,
         pages: {},
+        theme: {
+          customCss: './src/css/custom.css',
+        },
       },
     ],
   ],

@@ -1,0 +1,56 @@
+.notFound {
+  min-height: 68vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 5rem;
+  text-align: center;
+}
+
+.notFound img {
+  width: 150px;
+  max-width: 45vw;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--ifm-color-primary);
+  font-size: 0.73rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.notFound h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-weight: 740;
+  letter-spacing: -0.06em;
+}
+
+.description {
+  max-width: 440px;
+  margin: 1rem 0 1.5rem;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.7;
+}
+
+.homeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 0.65rem;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  font-weight: 650;
+  padding: 0.8rem 1.1rem;
+  text-decoration: none;
+}
+
+.homeLink:hover {
+  background: var(--ifm-color-primary-dark);
+  color: #fff;
+  text-decoration: none;
+}

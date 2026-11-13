@@ -1,6 +1,7 @@
 // admin.js
 import React, { useState, useEffect, useRef } from 'react';
 import Layout from '@theme/Layout';
+import styles from './admin.module.css';
 
 export default function AdminPanel() {
   const [posts, setPosts] = useState([]);
@@ -141,33 +142,44 @@ export default function AdminPanel() {
   if (!authToken) {
     return (
       <Layout title="Admin Login">
-        <div style={{ padding: '4rem', maxWidth: '400px', margin: '0 auto' }}>
-          <h2>Admin Access</h2>
+        <main className={styles.adminPage}>
+          <section className={styles.loginCard}>
+            <p className={styles.eyebrow}>GolangForAll / Private</p>
+            <h1>Admin Access</h1>
+            <p>Enter your access token to manage community posts.</p>
+            <label htmlFor="admin-token">Admin token</label>
           <input
+            id="admin-token"
             type="password"
             placeholder="Enter admin token"
+            className={styles.field}
             onKeyDown={(e) => e.key === 'Enter' && setAuthToken(e.target.value)}
           />
-        </div>
+          </section>
+        </main>
       </Layout>
     );
   }
 
   return (
     <Layout title="Admin">
-      <div style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-        <h1>Content Console</h1>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+      <main className={styles.adminPage}>
+        <header className={styles.pageHeader}>
+          <p className={styles.eyebrow}>GolangForAll / Private</p>
+          <h1>Content Console</h1>
+          <p>Write, publish, and manage community posts.</p>
+        </header>
+        {error && <p className={styles.error} role="alert">{error}</p>}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem' }}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           {editingId && (
-            <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>
-              Editing post — <button type="button" onClick={resetForm} style={{ textDecoration: 'underline' }}>cancel</button>
+            <p className={styles.editingNotice}>
+              Editing post — <button type="button" onClick={resetForm}>cancel</button>
             </p>
           )}
-          <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
-          <input placeholder="Slug (unique, url-safe)" value={slug} onChange={(e) => setSlug(e.target.value)} required />
-         <select value={section} onChange={(e) => setSection(e.target.value)}>
+          <input className={styles.field} placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          <input className={styles.field} placeholder="Slug (unique, url-safe)" value={slug} onChange={(e) => setSlug(e.target.value)} required />
+          <select className={styles.field} value={section} onChange={(e) => setSection(e.target.value)}>
               <option value="fundamentals">Fundamentals</option>
               <option value="backend">Backend Engineering</option>
               <option value="systems">Systems &amp; Concurrency</option>
@@ -178,11 +190,11 @@ export default function AdminPanel() {
           </select>
 
           <div>
-            <label style={{ display: 'block', marginBottom: '0.4rem', fontSize: '0.85rem', opacity: 0.8 }}>
+            <label className={styles.uploadLabel}>
               Insert image at cursor position in Content below
             </label>
             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
-            {uploading && <span style={{ marginLeft: '0.5rem' }}>Uploading...</span>}
+            {uploading && <span className={styles.uploadStatus}>Uploading...</span>}
           </div>
 
           <textarea
@@ -191,26 +203,29 @@ export default function AdminPanel() {
             rows="16"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            style={{ fontFamily: 'monospace', fontSize: '0.9rem' }}
+            className={`${styles.field} ${styles.contentField}`}
             required
           />
 
-          <button type="submit">{editingId ? 'Update' : 'Publish'}</button>
+          <button className={styles.submitButton} type="submit">{editingId ? 'Update' : 'Publish'}</button>
         </form>
 
-        <h3>Posts</h3>
-        <ul>
+        <h2 className={styles.postsHeading}>Posts</h2>
+        <ul className={styles.postList}>
           {posts.map((post) => (
-            <li key={post.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #ccc', padding: '0.5rem 0' }}>
-              <span>[{post.section}] {post.title}</span>
-              <span style={{ display: 'flex', gap: '0.5rem' }}>
-                <button onClick={() => startEdit(post)}>Edit</button>
-                <button onClick={() => handleDeletePost(post.id)}>Delete</button>
+            <li key={post.id} className={styles.postItem}>
+              <span className={styles.postTitle}>
+                <span className={styles.postSection}>{post.section}</span>
+                {post.title}
+              </span>
+              <span className={styles.postActions}>
+                <button className={styles.secondaryButton} onClick={() => startEdit(post)}>Edit</button>
+                <button className={styles.secondaryButton} onClick={() => handleDeletePost(post.id)}>Delete</button>
               </span>
             </li>
           ))}
         </ul>
-      </div>
+      </main>
     </Layout>
   );
 }

@@ -259,3 +259,236 @@
     font-size: 2rem;
   }
 }
+
+.blogPage {
+  background: var(--ifm-background-color);
+  grid-template-columns: 280px minmax(0, 1fr) 230px;
+}
+
+.sidebar {
+  background: var(--ifm-background-surface-color);
+}
+
+.sidebarInner {
+  padding: 2rem 1rem 2rem 1.25rem;
+}
+
+.sidebarTitle {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sidebarItem {
+  border-radius: 0.55rem;
+  padding: 0.65rem 0.75rem;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+.main {
+  background:
+    radial-gradient(ellipse at 75% 0, rgba(8, 126, 157, 0.045), transparent 28rem),
+    var(--ifm-background-color);
+}
+
+.contentWrapper {
+  max-width: 1020px;
+  padding: 3.5rem clamp(1.5rem, 4vw, 4rem) 5rem;
+}
+
+.kicker {
+  margin: 0 0 0.9rem;
+  color: var(--ifm-color-primary);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.articleHeader,
+.listHeader {
+  margin-bottom: 2rem;
+}
+
+.articleHeader {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse at 100% 0, rgba(8, 126, 157, 0.25), transparent 25rem),
+    linear-gradient(135deg, #202b31, #121a1e);
+  padding: 2.25rem;
+}
+
+.articleHeader .kicker {
+  color: #7ed4e4;
+}
+
+.articleHeader h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 740;
+  letter-spacing: -0.06em;
+  line-height: 1.08;
+}
+
+.meta {
+  margin: 1rem 0 0;
+  color: #b7c8ce;
+  font-size: 0.86rem;
+}
+
+.listHeader h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 740;
+  letter-spacing: -0.07em;
+}
+
+.listHeader > p:last-child {
+  max-width: 520px;
+  margin: 0.75rem 0 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.postList {
+  gap: 1rem;
+}
+
+.postCard {
+  position: relative;
+  overflow: hidden;
+  min-height: 190px;
+  border-color: var(--ifm-color-emphasis-200);
+  border-radius: 0.9rem;
+  background: var(--ifm-background-surface-color);
+  padding: 1.5rem 1.65rem;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.postCard::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), #76d9cb);
+  content: '';
+}
+
+.postCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--ifm-color-primary-light);
+  box-shadow: 0 14px 35px rgba(20, 72, 86, 0.1);
+}
+
+.postCard > div {
+  max-width: 720px;
+}
+
+.postCard h2 {
+  margin: 0.5rem 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-weight: 680;
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+}
+
+.postCard .excerpt {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.postCard .postDate {
+  margin: 0.8rem 0 0;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.77rem;
+}
+
+.postSection {
+  display: inline-flex;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-100);
+  padding: 0.28rem 0.6rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: var(--ifm-color-primary);
+}
+
+.markdown {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: 1.04rem;
+  line-height: 1.85;
+}
+
+.markdown h2,
+.markdown h3 {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.markdown blockquote {
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 0 0.65rem 0.65rem 0;
+  background: var(--ifm-color-emphasis-100);
+  padding: 1rem 1.2rem;
+}
+
+.markdown pre {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 0.8rem;
+}
+
+.backButton {
+  border-color: var(--ifm-color-emphasis-300);
+  border-radius: 0.6rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  padding: 0.7rem 0.95rem;
+}
+
+.tocInner {
+  padding-top: 3.5rem;
+}
+
+.tocTitle {
+  color: var(--ifm-color-emphasis-700);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 996px) {
+  .blogPage {
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .contentWrapper {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .articleHeader {
+    padding: 1.4rem;
+  }
+
+  .postCard {
+    min-height: 0;
+    padding: 1.25rem;
+  }
+}

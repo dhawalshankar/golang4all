@@ -1,6 +1,7 @@
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'GolangForAll',
+  favicon: 'img/golangforall-icon.svg',
   url: 'https://golangforall.in',
   baseUrl: '/',
 
@@ -46,8 +47,6 @@ const config = {
   ],
 
   themeConfig: {
-    favicon: 'img/favicon.ico',
-
     navbar: {
       title: 'GolangForAll',
       logo: {
@@ -76,7 +75,93 @@ const config = {
           label: 'GoLab',
           position: 'left',
         },
+        {
+          type: 'dropdown',
+          label: 'Connect',
+          position: 'right',
+          items: [
+            {
+              label: 'Instagram',
+              href: 'https://instagram.com/golangforall',
+            },
+            {
+              label: 'X',
+              href: 'https://x.com/golangforall',
+            },
+            {
+              label: 'YouTube',
+              href: 'https://youtube.com/@golangforall',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/DhawalShankar/golang4all',
+            },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/golangforall/',
+            },
+            {
+              label: 'WhatsApp channel',
+              href: 'https://whatsapp.com/channel/0029VbDoRp9JP214yrRcCS2I',
+            },
+            {
+              label: 'WhatsApp group',
+              href: 'https://chat.whatsapp.com/G642UWUIanCJjF8jzavUPA',
+            },
+            {
+              label: 'Founder',
+              href: 'https://thewittyswan.space',
+            },
+          ],
+        },
       ],
+    },
+
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Explore',
+          items: [
+            {label: 'Home', to: '/'},
+            {label: 'Docs', to: '/docs/intro'},
+            {label: 'Blog', to: '/blog'},
+            {label: 'About', to: '/about'},
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            {label: 'Meetups', to: '/docs/meetups'},
+            {
+              label: 'WhatsApp channel',
+              href: 'https://whatsapp.com/channel/0029VbDoRp9JP214yrRcCS2I',
+            },
+            {
+              label: 'WhatsApp group',
+              href: 'https://chat.whatsapp.com/G642UWUIanCJjF8jzavUPA',
+            },
+            {label: 'Meet the founder', href: 'https://thewittyswan.space'},
+          ],
+        },
+        {
+          title: 'Follow GolangForAll',
+          items: [
+            {label: 'Instagram', href: 'https://instagram.com/golangforall'},
+            {label: 'X', href: 'https://x.com/golangforall'},
+            {label: 'YouTube', href: 'https://youtube.com/@golangforall'},
+            {
+              label: 'GitHub',
+              href: 'https://github.com/DhawalShankar/golang4all',
+            },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/golangforall/',
+            },
+          ],
+        },
+      ],
+      copyright: `© ${new Date().getFullYear()} GolangForAll. Learn. Build. Share. Meet.`,
     },
   },
 };

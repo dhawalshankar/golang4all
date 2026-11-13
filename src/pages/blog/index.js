@@ -48,6 +48,24 @@ function extractHeadings(markdown) {
     .filter(Boolean);
 }
 
+function getPostExcerpt(markdown) {
+  const text = String(markdown || '')
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/^\s{0,3}#{1,6}\s+/gm, '')
+    .replace(/^\s*>+\s?/gm, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/[`*_~]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (text.length <= 160) {
+    return text;
+  }
+
+  return `${text.slice(0, 157).replace(/\s+\S*$/, '')}…`;
+}
+
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -195,12 +213,15 @@ export default function Blog() {
                 </div>
 
                 <header className={styles.articleHeader}>
+                  <p className={styles.kicker}>{activePost.section} / FIELD NOTES</p>
                   <h1>{activePost.title}</h1>
 
                   <div className={styles.meta}>
-                    {activePost.section}
-                    {' · '}
-                    {new Date(activePost.createdAt).toLocaleDateString()}
+                    Published{' '}
+                    {new Date(activePost.createdAt).toLocaleDateString(
+                      undefined,
+                      {month: 'long', day: 'numeric', year: 'numeric'},
+                    )}
                   </div>
                 </header>
 
@@ -253,6 +274,7 @@ export default function Blog() {
                 </div>
 
                 <header className={styles.listHeader}>
+                  <p className={styles.kicker}>GOLANGFORALL / FIELD NOTES</p>
                   <h1>
                     {activeSection
                       ? SECTIONS.find(
@@ -282,11 +304,18 @@ export default function Blog() {
                           </div>
 
                           <h2>{post.title}</h2>
+                          <p className={styles.excerpt}>
+                            {getPostExcerpt(post.content)}
+                          </p>
 
-                          <p>
+                          <p className={styles.postDate}>
                             {new Date(
                               post.createdAt,
-                            ).toLocaleDateString()}
+                            ).toLocaleDateString(undefined, {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric',
+                            })}
                           </p>
                         </div>
 

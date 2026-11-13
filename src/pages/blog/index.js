@@ -213,7 +213,7 @@ export default function Blog() {
                 </div>
 
                 <header className={styles.articleHeader}>
-                  <p className={styles.kicker}>{activePost.section} / FIELD NOTES</p>
+                  <p className={styles.kicker}>{activePost.section}</p>
                   <h1>{activePost.title}</h1>
 
                   <div className={styles.meta}>
@@ -274,7 +274,7 @@ export default function Blog() {
                 </div>
 
                 <header className={styles.listHeader}>
-                  <p className={styles.kicker}>GOLANGFORALL / FIELD NOTES</p>
+                  <p className={styles.kicker}>COMMUNITY BLOG</p>
                   <h1>
                     {activeSection
                       ? SECTIONS.find(

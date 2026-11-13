@@ -1,5 +1,7 @@
 # GolangForAll 🇮🇳
 
+[![CI](https://github.com/DhawalShankar/golang4all/actions/workflows/ci.yml/badge.svg)](https://github.com/DhawalShankar/golang4all/actions/workflows/ci.yml)
+
 > **Go without the gatekeeping.**
 
 **GolangForAll** is an independent community for people who **learn, build,
@@ -39,7 +41,8 @@ The goal is to build a place where **Gophers learn from each other**.
 
 ## 🌐 Platform
 
-The main website is built around a Docusaurus + React frontend with a custom Go backend.
+The main website is built around a Docusaurus + React frontend with Go API
+functions for community posts and image uploads.
 
 ### Core areas
 
@@ -51,6 +54,18 @@ The main website is built around a Docusaurus + React frontend with a custom Go 
 | **Meetups**       | Developer events and community activity    |
 | **Now**           | What the community is currently working on |
 | **Announcements** | Community updates                          |
+
+### Site experience and search
+
+The site shares its styling and community footer across the home, docs, blog,
+about, and admin pages, and uses a GolangForAll favicon. The navbar includes
+social links for GitHub, LinkedIn, Instagram, and X; the footer also links to
+YouTube, WhatsApp, and the founder.
+
+Navbar search combines the local docs and static-page index with published blog
+posts fetched from `/api/posts`. It matches post titles, sections, and article
+content, and selecting a blog result opens that article. If the posts API is
+unavailable, docs and page search remain available.
 
 ---
 
@@ -132,6 +147,9 @@ Announcements
 The public API exposes published posts, while administrative operations require an admin authentication token.
 
 Images uploaded through the content console are sent to **Cloudinary** through a protected backend endpoint.
+The Go handlers in `api/posts.go` and `api/upload.go` are deployed as Vercel
+functions; the posts endpoint returns published content for the blog and navbar
+search.
 
 ---
 
@@ -166,12 +184,13 @@ GoLab is specifically designed around the principle that **user-submitted code m
 * React Markdown
 * Remark GFM
 * Rehype Raw
+* `@easyops-cn/docusaurus-search-local` for local docs and page search
 
 ### Backend
 
 * Go
-* HTTP APIs
-* PostgreSQL
+* Vercel Go HTTP functions
+* PostgreSQL via Neon
 
 ### Infrastructure
 
@@ -203,23 +222,32 @@ A simplified view of the application:
 
 ```text
 golangforall/
+├── api/
+│   ├── posts.go
+│   └── upload.go
 ├── docs/
+├── migrations/
+│   └── 001_create_posts.sql
+├── pkg/
+│   └── db/
 ├── src/
+│   ├── css/
 │   ├── pages/
 │   │   ├── index.js
 │   │   ├── about.js
-│   │   ├── blog.js
-│   │   └── admin.js
-│   └── components/
-├── api/
-│   ├── posts/
-│   └── upload/
-├── pkg/
-│   └── db/
+│   │   ├── admin.js
+│   │   └── blog/
+│   │       └── index.js
+│   └── theme/
+│       ├── NotFound/
+│       └── SearchBar/
 ├── static/
 │   └── img/
+├── docusaurus.config.mjs
+├── go.mod
+├── package.json
 ├── sidebars.js
-└── docusaurus.config.js
+└── vercel.json
 ```
 
 The exact structure may evolve as the platform grows.
@@ -227,6 +255,9 @@ The exact structure may evolve as the platform grows.
 ---
 
 ## 🚀 Running Locally
+
+The frontend requires Node.js 24 or later. Go 1.24 is required when working on
+the API handlers.
 
 Clone the repository:
 
@@ -238,7 +269,7 @@ cd golangforall
 Install dependencies:
 
 ```bash
-npm install
+npm ci
 ```
 
 Start the development server:
@@ -253,18 +284,29 @@ The site should then be available at:
 http://localhost:3000
 ```
 
-### Backend environment
+Build and preview the production frontend with:
 
-The backend requires environment variables for services such as:
+```bash
+npm run build
+npm run serve
+```
+
+### API environment
+
+The Go API functions require the following environment variables:
 
 ```env
 ADMIN_AUTH_TOKEN=
-DATABASE_URL=
-
+NEON_DATABASE_URL=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 ```
+
+`npm run start` runs the Docusaurus frontend only; it does not run the Vercel
+Go functions under `/api`. Blog data, navbar blog results, and image uploads
+require a Vercel-compatible local runtime or a deployed API, configured with
+these variables. The variable names are also listed in `.env.example`.
 
 Do **not** commit production credentials or secrets to the repository.
 
@@ -273,6 +315,10 @@ Do **not** commit production credentials or secrets to the repository.
 ## 🤝 Contributing
 
 GolangForAll is built around community contribution.
+
+Start with the [contribution guide](CONTRIBUTING.md). Please also read the
+[Code of Conduct](CODE_OF_CONDUCT.md); security concerns should follow
+[SECURITY.md](SECURITY.md), not be posted publicly.
 
 You can contribute by:
 
@@ -349,9 +395,9 @@ It is not affiliated with, endorsed by, or connected to `golangforall.com` or an
 
 ## 📜 License
 
-The licensing of individual components and community contributions may vary.
-
-See the repository's license files and individual project directories for applicable terms.
+Unless a file states otherwise, this repository is licensed under the MIT
+License; see [LICENSE](LICENSE). Third-party dependencies and content remain
+subject to their respective licenses.
 
 ---
 

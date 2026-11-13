@@ -67,6 +67,17 @@ export default function About() {
               Want to speak, write, or host a meetup in your own city?{' '}
               <Link to="/docs/contribute">Find a way to contribute</Link>.
             </p>
+            <p>
+              Help support the work of growing this community:{' '}
+              <a
+                href="https://rzp.io/rzp/U6FewHU"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🍎 Buy me an apple
+              </a>
+              .
+            </p>
             <div className={styles.profileLinks}>
               <a
                 href="https://github.com/DhawalShankar"

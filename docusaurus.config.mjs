@@ -149,6 +149,10 @@ const config = {
               href: 'https://chat.whatsapp.com/G642UWUIanCJjF8jzavUPA',
             },
             {label: 'Meet the founder', href: 'https://thewittyswan.space'},
+            {
+              label: '🍎 Buy me an apple',
+              href: 'https://rzp.io/rzp/U6FewHU',
+            },
           ],
         },
         {
